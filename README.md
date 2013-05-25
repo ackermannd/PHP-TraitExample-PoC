@@ -7,7 +7,7 @@ Disclaimer: I do not promote the usage of Traits in this way or want to demote a
 
 Concept
 =======
-As mentioned this concept is based on the philosophy to provide objects with the ability to use other objects, rather then providing them with the raw functionality via the Traits. Take for example __Logging__ or __Caching__. Normally you would want that you have the ability to cache data or log some information everywhere in your application. Also, you would normally want to have centralized Services for both. 
+As mentioned this concept is based on the philosophy to provide objects with the ability to use other objects, rather then providing them with the raw functionality via the Traits. Take for example __Logging__ or __Caching__. Normally you would want that you have the ability to cache data or log some information everywhere in your application. Also, you would normally want to have on centralized Service for both. 
 
 For this Example, __Logging__ is done via one centralized class, __Logger.php__. 
 The abilty to use the __Logger.php__ class will be bundled in the __Loggable Trait__
@@ -35,8 +35,20 @@ The abilty to use the __Logger.php__ class will be bundled in the __Loggable Tra
       }        
     }
     
-As you can see, the trait only provides the object with the ability to get an Logger instance set and to pass through the __log()__ method if an instance is set. This way we could write our application code like so: 
+As you can see, the trait only provides the object with the ability to get a Logger instance set and to pass through the __log()__ method if an instance is set. This way we could write our application code like so: 
 
+    //Example.php
+    namespace ackermannd\traitex;
+    
+    
+    use ackermannd\traitex\Traits\Loggable;
+    use ackermannd\traitex\Traits\Cachable;
+    
+    class Example {
+        use Loggable, Cachable;
+    }
+    
+    //index.php
     use ackermannd\traitex\Example;
     
     $ex = new Example();
@@ -49,4 +61,4 @@ The code would run without any errors but without logging anything either. If we
     
     $ex = new Example();
     $ex->setLogger(new Logger());
-    $ex->log('test');
+    $ex->log('SomeLoggingInfo');
