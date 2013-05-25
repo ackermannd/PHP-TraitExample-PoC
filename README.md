@@ -7,7 +7,7 @@ Disclaimer: I do not promote the usage of Traits in this way or want to demote a
 
 Concept
 =======
-As mentioned this concept is based on the philosophy to provide objects with the ability to use other objects, rather then providing them with the raw functionality via the Traits. Take for example __Logging__ or __Caching__. Normally you would want that you have the ability to cache data or log some information everywhere in your application. Also, you would normally want to have on centralized Service for both. 
+As mentioned this concept is based on the philosophy to provide objects with the ability to use other objects, rather then providing them with the raw functionality via the Traits. Take for example __Logging__ or __Caching__. Normally you would want that you have the ability to cache data or log some information everywhere in your application. Also, you would normally want to have centralized Services for both. 
 
 For this Example, __Logging__ is done via one centralized class, __Logger.php__. 
 The abilty to use the __Logger.php__ class will be bundled in the __Loggable Trait__
