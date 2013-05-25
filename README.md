@@ -11,31 +11,32 @@ As mentioned this concept is based on the philosophy to provide objects with the
 
 For this Example, __Logging__ is done via one centralized class, __Logger.php__. 
 The abilty to use the __Logger.php__ class will be bundled in the __Loggable Trait__
-
-    <?php
-    //Traits/Loggable.php
-    trait Loggable 
-    {
-      protected $_traitLogger = null;
-      
-      public function setLogger($logger) {
-              $this->_traitLogger = $logger;
-              return $this;
-      }
-      
-      public function getLogger() {
-              return $this->_traitLogger;
-      }
-      
-      public function log($string = '', $loglevel = null) {
-              if ($this->_traitLogger !== null) {
-                      return $this->_traitLogger->log($string, $loglevel);    
-              }
-              return null;
-      }        
-    }
-    
+```php
+<?php
+//Traits/Loggable.php
+trait Loggable 
+{
+  protected $_traitLogger = null;
+  
+  public function setLogger($logger) {
+          $this->_traitLogger = $logger;
+          return $this;
+  }
+  
+  public function getLogger() {
+          return $this->_traitLogger;
+  }
+  
+  public function log($string = '', $loglevel = null) {
+          if ($this->_traitLogger !== null) {
+                  return $this->_traitLogger->log($string, $loglevel);    
+          }
+          return null;
+  }        
+}
+```
 As you can see, the trait only provides the object with the ability to get a Logger instance set and to pass through the __log()__ method if an instance is set. This way we could write our application code like so: 
+```php
 
     //Example.php
     namespace ackermannd\traitex;
@@ -53,8 +54,9 @@ As you can see, the trait only provides the object with the ability to get a Log
     
     $ex = new Example();
     $ex->log('SomeLoggingInfo');
-
+```
 The code would run without any errors but without logging anything either. If we now want to activate logging for the Example Object we would only have to to something like this: 
+```php
 
     use ackermannd\traitex\Logger;
     use ackermannd\traitex\Example;
@@ -62,3 +64,4 @@ The code would run without any errors but without logging anything either. If we
     $ex = new Example();
     $ex->setLogger(new Logger());
     $ex->log('SomeLoggingInfo');
+```
